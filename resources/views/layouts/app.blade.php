@@ -61,6 +61,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cuota_mensual.index') }}">{{ __('Cuotas mensuales') }}</a>
                         </li>
+
+                        <li.nav-item <div class="dropdown">
+                            <a id="my-dropdown" class="nav-link dropdown-toggle" role ="button" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Consultas</a>
+                            <div class="dropdown-menu" aria-labelledby="my-dropdown">
+                                <a class="dropdown-item active" href="bajas">Niños que se dieron de baja</a>
+                            </div>
+                        </div>
                     </ul>
                     @endif
                     <!-- Right Side Of Navbar -->

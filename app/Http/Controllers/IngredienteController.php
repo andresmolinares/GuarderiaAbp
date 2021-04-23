@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ingrediente;
+use App\Models\Nino;
+use App\Models\Plato;
 use Illuminate\Http\Request;
 
 class IngredienteController extends Controller
@@ -28,7 +30,9 @@ class IngredienteController extends Controller
     public function create()
     {
         //
-        return view('ingrediente.create');
+        $ninos = Nino::all();
+        $platos = plato::all();
+        return view('ingrediente.create', compact('ninos', 'platos'));
     }
 
     /**
@@ -81,8 +85,9 @@ class IngredienteController extends Controller
     {
         //
         $ingrediente=Ingrediente::findOrFail($id);
-
-        return view('ingrediente.edit', compact('ingrediente'));
+        $ninos = Nino::all();
+        $platos = plato::all();
+        return view('ingrediente.edit', compact('ingrediente', 'ninos', 'platos'));
     }
 
     /**

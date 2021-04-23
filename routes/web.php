@@ -45,7 +45,7 @@ Auth::routes();
 // ['register'=> false, 'reset'=>false]
 
 Route::get('/home', [NinoController::class, 'index'])->name('home');
-
+Route::get('bajas', [NinoController::class, 'consulta']);
 Route::group(['middleware'=>'auth'],function () {
 
     Route::get('/home', [NinoController::class, 'index'])->name('home');

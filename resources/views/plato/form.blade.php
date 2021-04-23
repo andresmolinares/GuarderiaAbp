@@ -31,8 +31,11 @@
 
 <div class="form-group">
 <label for="menu_id">Menú al que pertenece:</label>
-<input type="text" class="form-control" name="menu_id" value="{{ isset($plato -> menu_id)?$plato -> menu_id:old('menu_id') }}" id="menu_id">
-
+<select class="form-control" name="menu_id" id="menu_id">
+    @foreach ($menus as $menu)
+    <option value="{{$menu -> id}}">{{$menu->nombre}}</option>
+@endforeach
+</select>
 </div>
 
 

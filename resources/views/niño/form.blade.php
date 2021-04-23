@@ -19,7 +19,7 @@
 
 <div class="form-group">
 <label for="fecha_ingreso">Fecha de ingreso:</label>
-<input type="date" class="form-control" name="fecha_ingreso" value="{{ isset($niño -> fecha_ingreso)?$niño -> fecha_ingreso:old('fecha_ingreso') }}" id="fecha_ingreso">
+<input type="date" class="form-control" name="fecha_ingreso" value="{{ old('fecha_ingreso', date('Y-m-d')) }}" id="fecha_ingreso">
 
 </div>
 
@@ -31,20 +31,27 @@
 
 <div class="form-group">
 <label for="fecha_baja">Fecha de baja:</label>
-<input type="date" class="form-control" name="fecha_baja" value="{{ isset($niño -> fecha_baja)?$niño -> fecha_baja:old('fecha_baja') }}" id="fecha_baja">
+<input type="date" class="form-control" name="fecha_baja" value="{{ old('fecha_baja', date('Y-m-d')) }}" id="fecha_baja">
 
 </div>
 
 <div class="form-group">
-<label for="persona_id">Cedula de la madre, padre o acudiente:</label>
-<input type="text" class="form-control" name="persona_id" value="{{ isset($niño -> persona_id)?$niño -> persona_id:old('persona_id') }}" id="persona_id">
+    <label for="fecha_baja">Acudiente:</label>
+<select class="form-control" name="persona_id" id="persona_id">
+    @foreach ($personas as $persona)
+    <option value="{{$persona -> id}}">{{$persona->nombre}}</option>
+@endforeach
+</select>
 
 </div>
 
 <div class="form-group">
 <label for="menu_id">Menú diario:</label>
-<input type="text" class="form-control" name="menu_id" value="{{ isset($niño -> menu_id)?$niño -> menu_id:old('menu_id') }}" id="menu_id">
-
+<select class="form-control" name="menu_id" id="menu_id">
+    @foreach ($menus as $menu)
+        <option value="{{ $menu->id }}">{{$menu->nombre}} </option>
+    @endforeach
+</select>
 </div>
 
 <input class="btn btn-success" type="submit" value="{{$modo}} Datos">

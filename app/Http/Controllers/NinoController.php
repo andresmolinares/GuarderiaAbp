@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use App\Models\Nino;
+use App\Models\Persona;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class NinoController extends Controller
@@ -17,7 +20,13 @@ class NinoController extends Controller
         //
         $ninos = Nino::with("persona")->paginate(5);
         
+
         return view('niño.index', compact('ninos'));
+    }
+
+    public function consulta(){
+        $ninos=Nino::whereNotNull('fecha_baja')->get();
+        return view('bajas', compact('ninos'));
     }
 
     /**
@@ -28,7 +37,9 @@ class NinoController extends Controller
     public function create()
     {
         //
-        return view('niño.create');
+        $personas = Persona::all();
+        $menus = Menu::all();
+        return view('niño.create', compact('personas', 'menus'));
         
     }
 
@@ -40,6 +51,7 @@ class NinoController extends Controller
      */
     public function store(Request $request)
     {
+        
 
         $campos=[
             'nombre'=>'required|string|max:100',
@@ -58,7 +70,7 @@ class NinoController extends Controller
         ];
 
         $this->validate($request,$campos,$mensaje);
-
+        
         $datosNiño = request()->except('_token');
         Nino::insert($datosNiño);
 
@@ -86,8 +98,9 @@ class NinoController extends Controller
     {
         //
         $niño=Nino::findOrFail($id);
-
-        return view('niño.edit', compact('niño'));
+        $personas = Persona::all();
+        $menus = Menu::all();
+        return view('niño.edit', compact('niño', 'personas', 'menus'));
         
     }
 

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cuota_mensual;
+use App\Models\Pagador;
+use App\Models\Nino;
 use Illuminate\Http\Request;
 
 class CuotaMensualController extends Controller
@@ -28,7 +30,9 @@ class CuotaMensualController extends Controller
     public function create()
     {
         //
-        return view('cuota_mensual.create');
+        $ninos = Nino::all();
+        $pagadores = Pagador::all();
+        return view('cuota_mensual.create', compact('ninos', 'pagadores'));
 
     }
 
@@ -81,8 +85,9 @@ class CuotaMensualController extends Controller
     {
         //
         $cuota_mensual=Cuota_mensual::findOrFail($id);
-
-        return view('cuota_mensual.edit', compact('cuota_mensual'));
+        $ninos = Nino::all();
+        $pagadores = Pagador::all();
+        return view('cuota_mensual.edit', compact('cuota_mensual', 'ninos', 'pagadores'));
     }
 
     /**

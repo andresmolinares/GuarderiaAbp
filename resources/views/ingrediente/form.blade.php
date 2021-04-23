@@ -19,20 +19,26 @@
 
 <div class="form-group">
 <label for="comidas_realizadas">Fecha de caducidad:</label>
-<input type="date" class="form-control" name="fecha_caducidad" value="{{ isset($ingrediente -> fecha_caducidad)?$ingrediente -> fecha_caducidad:old('fecha_caducidad') }}" id="fecha_caducidad">
+<input type="date" class="form-control" name="fecha_caducidad" value="{{old('fecha_caducidad', date('Y-m-d'))}}" id="fecha_caducidad">
 
 </div>
 
 <div class="form-group">
 <label for="fecha_baja">Niño alergico:</label>
-<input type="text" class="form-control" name="niño_id" value="{{ isset($ingrediente -> niño_id)?$ingrediente -> niño_id:old('niño_id') }}" id="niño_id">
-
+<select class="form-control" name="niño_id" id="niño_id">
+    @foreach ($ninos as $nino)
+        <option value="{{ $nino->id }}">{{$nino->nombre}}</option>
+    @endforeach
+    </select>
 </div>
 
 <div class="form-group">
 <label for="menu_id">Plato al que pertenece:</label>
-<input type="text" class="form-control" name="plato_id" value="{{ isset($ingrediente -> plato_id)?$ingrediente -> plato_id:old('plato_id') }}" id="plato_id">
-
+<select class="form-control" name="plato_id" id="plato_id">
+    @foreach ($platos as $plato)
+        <option value="{{ $plato->id }}">{{$plato->nombre}}</option>
+    @endforeach
+    </select>
 </div>
 
 

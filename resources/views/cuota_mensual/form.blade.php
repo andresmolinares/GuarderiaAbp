@@ -12,27 +12,36 @@
 @endif
 
 <div class="form-group">
-<label for="fecha_ingreso">Valor de mensualidad:</label>
+<label for="valor_mensualidad">Valor de mensualidad:</label>
 <input type="text" class="form-control" name="valor_mensualidad" value="{{ isset($cuota_mensual -> valor_mensualidad)?$cuota_mensual ->valor_mensualidad:old('valor_mensualidad') }}" id="valor_mensualidad">
 
 </div>
 
 <div class="form-group">
-<label for="comidas_realizadas">Costo x Comida:</label>
+<label for="costo_comida">Costo x Comida:</label>
 <input type="text" class="form-control" name="costo_comida" value="{{ isset($cuota_mensual -> costo_comida)?$cuota_mensual -> costo_comida:old('costo_comida') }}" id="costo_comida">
 
 </div>
 
 <div class="form-group">
-<label for="fecha_baja">Niño:</label>
-<input type="text" class="form-control" name="niño_id" value="{{ isset($cuota_mensual -> niño_id)?$cuota_mensual -> niño_id:old('niño_id') }}" id="niño_id">
 
-</div>
+    <label for="niño">Niño:</label>
+    <select class="form-control" name="niño_id" id="niño_id">
+    @foreach ($ninos as $nino)
+        <option value="{{ $nino->id }}">{{$nino->nombre}}</option>
+    @endforeach
+    </select>
+    </div>
+
 
 <div class="form-group">
 <label for="menu_id">Pagador:</label>
-<input type="text" class="form-control" name="pagador_id" value="{{ isset($cuota_mensual -> pagador)?$cuota_mensual -> pagador_id:old('pagador_id') }}" id="pagador_id">
+<select class="form-control" name="pagador_id" id="pagador_id">
+@foreach ($pagadores as $pagador)
+    <option value="{{ $pagador->id }}"> {{$pagador->id}} </option>
+@endforeach
 
+</select>
 </div>
 
 

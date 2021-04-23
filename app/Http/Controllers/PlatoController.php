@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Plato;
+use App\Models\Menu;
 use Illuminate\Http\Request;
 
 class PlatoController extends Controller
@@ -28,7 +29,8 @@ class PlatoController extends Controller
     public function create()
     {
         //
-        return view('plato.create');
+        $menus = Menu::all();
+        return view('plato.create', compact('menus'));
     }
 
     /**
@@ -79,8 +81,8 @@ class PlatoController extends Controller
     {
         //
         $plato=Plato::findOrFail($id);
-
-        return view('plato.edit', compact('plato'));
+        $menus = Menu::all();
+        return view('plato.edit', compact('plato', 'menus'));
     }
 
     /**

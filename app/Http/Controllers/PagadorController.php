@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pagador;
+use App\Models\Persona;
 use Illuminate\Http\Request;
 
 class PagadorController extends Controller
@@ -28,7 +29,8 @@ class PagadorController extends Controller
     public function create()
     {
         //
-        return view('pagador.create');
+        $personas = Persona::all();
+        return view('pagador.create', compact('personas'));
     }
 
     /**
@@ -78,8 +80,8 @@ class PagadorController extends Controller
     {
         //
         $pagador=Pagador::findOrFail($id);
-
-        return view('pagador.edit', compact('pagador'));
+        $personas = Persona::all();
+        return view('pagador.edit', compact('pagador', 'personas'));
     }
 
     /**

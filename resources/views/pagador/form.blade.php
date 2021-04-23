@@ -11,12 +11,15 @@
 
 @endif
 
+
 <div class="form-group">
-<label for="fecha_ingreso">Cédula persona:</label>
-<input type="text" class="form-control" name="id" value="{{ isset($pagador -> id)?$pagador ->id:old('id') }}" id="id">
-
+    <label for="fecha_baja">Persona:</label>
+<select class="form-control" name="id" id="id">
+    @foreach ($personas as $persona)
+    <option value="{{ $persona->id }}">{{$persona->nombre}}</option>
+@endforeach
+</select>
 </div>
-
 <div class="form-group">
 <label for="comidas_realizadas">Numero de cuenta:</label>
 <input type="text" class="form-control" name="numero_cuenta" value="{{ isset($pagador -> numero_cuenta)?$pagador -> numero_cuenta:old('numero_cuenta') }}" id="numero_cuenta">
