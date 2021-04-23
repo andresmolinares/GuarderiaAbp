@@ -6,6 +6,7 @@ use App\Models\Ingrediente;
 use App\Models\Nino;
 use App\Models\Plato;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class IngredienteController extends Controller
 {
@@ -21,7 +22,13 @@ class IngredienteController extends Controller
         
         return view('ingrediente.index', compact('ingredientes'));
     }
-
+    
+    public function alergicos(){
+        $ingredientes = DB::table('ingredientes')
+        ->join('ninos', 'ninos.id', 'ingredientes.niño_id')
+        ->select('ingredientes.nombre', 'ninos.nombre as ninos_nombre')->get();
+        return view('alergicos', compact('ingredientes'));
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -89,6 +96,8 @@ class IngredienteController extends Controller
         $platos = plato::all();
         return view('ingrediente.edit', compact('ingrediente', 'ninos', 'platos'));
     }
+
+
 
     /**
      * Update the specified resource in storage.

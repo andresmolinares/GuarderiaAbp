@@ -24,10 +24,7 @@ class NinoController extends Controller
         return view('niño.index', compact('ninos'));
     }
 
-    public function consulta(){
-        $ninos=Nino::whereNotNull('fecha_baja')->get();
-        return view('bajas', compact('ninos'));
-    }
+
 
     /**
      * Show the form for creating a new resource.

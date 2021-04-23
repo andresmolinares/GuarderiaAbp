@@ -8,6 +8,8 @@ use App\Http\Controllers\PlatoController;
 use App\Http\Controllers\IngredienteController;
 use App\Http\Controllers\PagadorController;
 use App\Http\Controllers\CuotaMensualController;
+use App\Http\Controllers\Controller;
+use App\Models\Ingrediente;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -45,7 +47,8 @@ Auth::routes();
 // ['register'=> false, 'reset'=>false]
 
 Route::get('/home', [NinoController::class, 'index'])->name('home');
-Route::get('bajas', [NinoController::class, 'consulta']);
+Route::get('bajas', [Controller::class, 'bajas']);
+Route::get('alergicos', [IngredienteController::class, 'alergicos']);
 Route::group(['middleware'=>'auth'],function () {
 
     Route::get('/home', [NinoController::class, 'index'])->name('home');
