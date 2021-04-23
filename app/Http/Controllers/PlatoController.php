@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Plato;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlatoController extends Controller
 {
@@ -19,6 +20,17 @@ class PlatoController extends Controller
         $platos = Plato::with("menu")->paginate(5);
         
         return view('plato.index', compact('platos'));
+    }
+
+
+    public function cantidad_platos()
+    {
+        $platos = DB::table('platos')
+        ->join('menus', 'platos.menu_id', 'menus.id')
+        ->selectRaw('menus.nombre as nombre_menu, COUNT(platos.menu_id) as total_platos')
+        ->groupby('platos.menu_id')->get();
+
+        return view('cantidad_platos', compact('platos'));
     }
 
     /**

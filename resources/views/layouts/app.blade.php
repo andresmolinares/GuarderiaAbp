@@ -23,7 +23,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="#">
                     Guarderia
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -68,6 +68,9 @@
                             <div class="dropdown-menu" aria-labelledby="my-dropdown">
                                 <a class="dropdown-item" href="bajas">Niños que se dieron de baja</a>
                                 <a class="dropdown-item" href="alergicos">Niños alergicos a algún ingrediente</a>
+                                <a class="dropdown-item" href="total_mensualidad">Mensualidades</a>
+                                <a class="dropdown-item" href="cantidad_platos">Total de platos por cada menú</a>
+                                <a class="dropdown-item" href="menu_favorito">Menus favoritos</a>
                             </div>
 
                                 

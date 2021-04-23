@@ -36,8 +36,8 @@
         @foreach($cuota_mensuales as $cuota_mensual)
         <tr>
             <td>{{$cuota_mensual->id}}</td>
-            <td>{{$cuota_mensual->valor_mensualidad}}</td>
-            <td>{{$cuota_mensual->costo_comida}}</td>
+            <td>${{$cuota_mensual->valor_mensualidad}}</td>
+            <td>${{$cuota_mensual->costo_comida}}</td>
             <td>{{$cuota_mensual->niño_id}}</td>
             <td>{{$cuota_mensual->pagador_id}}</td>
             

@@ -42,13 +42,16 @@ Route::resource('ingrediente', IngredienteController::class)->middleware('auth')
 Route::resource('pagador', PagadorController::class)->middleware('auth');
 Route::resource('cuota_mensual', CuotaMensualController::class)->middleware('auth');
 
-Auth::routes();
+Auth::routes(['register'=> false, 'reset'=>false]);
 //poner esto dentro del parentesis de route al terminar todos los crud
 // ['register'=> false, 'reset'=>false]
 
 Route::get('/home', [NinoController::class, 'index'])->name('home');
 Route::get('bajas', [Controller::class, 'bajas']);
 Route::get('alergicos', [IngredienteController::class, 'alergicos']);
+Route::get('total_mensualidad', [NinoController::class, 'total_mensualidad']);
+Route::get('menu_favorito', [NinoController::class, 'menu_favorito']);
+Route::get('cantidad_platos', [PlatoController::class, 'cantidad_platos']);
 Route::group(['middleware'=>'auth'],function () {
 
     Route::get('/home', [NinoController::class, 'index'])->name('home');
