@@ -23,15 +23,7 @@ class PlatoController extends Controller
     }
 
 
-    public function cantidad_platos()
-    {
-        $platos = DB::table('platos')
-        ->join('menus', 'platos.menu_id', 'menus.id')
-        ->selectRaw('menus.nombre as nombre_menu, COUNT(platos.menu_id) as total_platos')
-        ->groupby('platos.menu_id')->get();
 
-        return view('cantidad_platos', compact('platos'));
-    }
 
     /**
      * Show the form for creating a new resource.

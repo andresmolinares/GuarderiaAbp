@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Ingrediente extends Model
 {
@@ -31,6 +32,12 @@ class Ingrediente extends Model
         return $this->belongsTo(Plato::class, 'plato_id', 'id');
 
     }
-
+    //Consultas
+    public function alergicos(){
+        $ingredientes = DB::table('ingredientes')
+        ->join('ninos', 'ninos.id', 'ingredientes.niño_id')
+        ->select('ingredientes.nombre', 'ninos.nombre as ninos_nombre')->get();
+        return view('alergicos', compact('ingredientes'));
+    }
 
 }

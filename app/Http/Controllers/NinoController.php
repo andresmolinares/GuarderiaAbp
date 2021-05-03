@@ -24,25 +24,9 @@ class NinoController extends Controller
         return view('niño.index', compact('ninos'));
     }
 
-    public function total_mensualidad(){
-        $ninos=DB::table('ninos')
-        ->join('cuota_mensuales','ninos.id', 'cuota_mensuales.niño_id')
-        ->selectRaw('ninos.nombre AS ninos_nombre, ninos.comidas_realizadas, cuota_mensuales.valor_mensualidad AS cargo_mensual,cuota_mensuales.costo_comida, (cuota_mensuales.costo_comida * ninos.comidas_realizadas) as total_comidas , (cuota_mensuales.costo_comida * ninos.comidas_realizadas) + cuota_mensuales.valor_mensualidad AS total_mensualidad ')
-        ->get();
-        
-        return view('total_mensualidad', compact('ninos'));
+    // PASAR A MODELO
+    // PATRON DE DISEÑO ADO o DAO
 
-    }
-
-    public function menu_favorito(){
-        $ninos=DB::table('ninos')
-        ->join('menus', 'ninos.menu_id', 'menus.id')
-        ->selectRaw('COUNT(ninos.id) as cantidad_niños, menus.nombre as nombre_menu')
-        ->groupby('ninos.menu_id')
-        ->get();
-
-        return view('menu_favorito', compact('ninos'));
-    }
 
     /**
      * Show the form for creating a new resource.

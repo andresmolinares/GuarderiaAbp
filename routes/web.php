@@ -10,6 +10,8 @@ use App\Http\Controllers\PagadorController;
 use App\Http\Controllers\CuotaMensualController;
 use App\Http\Controllers\Controller;
 use App\Models\Ingrediente;
+use App\Models\Nino;
+use App\Models\Plato;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -47,11 +49,11 @@ Auth::routes(['register'=> false, 'reset'=>false]);
 // ['register'=> false, 'reset'=>false]
 
 Route::get('/home', [NinoController::class, 'index'])->name('home');
-Route::get('bajas', [Controller::class, 'bajas'])->middleware('auth');
-Route::get('alergicos', [IngredienteController::class, 'alergicos'])->middleware('auth');
-Route::get('total_mensualidad', [NinoController::class, 'total_mensualidad'])->middleware('auth');
-Route::get('menu_favorito', [NinoController::class, 'menu_favorito'])->middleware('auth');
-Route::get('cantidad_platos', [PlatoController::class, 'cantidad_platos'])->middleware('auth');
+Route::get('bajas', [Nino::class, 'bajas'])->middleware('auth');
+Route::get('alergicos', [Ingrediente::class, 'alergicos'])->middleware('auth');
+Route::get('total_mensualidad', [Nino::class, 'total_mensualidad'])->middleware('auth');
+Route::get('menu_favorito', [Nino::class, 'menu_favorito'])->middleware('auth');
+Route::get('cantidad_platos', [Plato::class, 'cantidad_platos'])->middleware('auth');
 Route::group(['middleware'=>'auth'],function () {
 
     Route::get('/home', [NinoController::class, 'index'])->name('home');

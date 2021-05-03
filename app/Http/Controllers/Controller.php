@@ -13,10 +13,6 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function bajas(){
-        $ninos=Nino::whereNotNull('fecha_baja')->get();
-        return view('bajas', compact('ninos'));
-    }
 
 
 
