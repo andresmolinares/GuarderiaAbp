@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Nino;
 use App\Models\Persona;
 use App\Models\Menu;
+use PDF;
 use Illuminate\Http\Request;
 
 class NinoController extends Controller
@@ -24,6 +25,15 @@ class NinoController extends Controller
         return view('niño.index', compact('ninos'));
     }
 
+    public function reporte_bajas(){
+        $ninos=Nino::whereNotNull('fecha_baja')->get();
+        $fecha=date('Y-m-d');
+        $data=compact('ninos', 'fecha');
+        $pdf=PDF::loadView('reports.reporte_bajas', $data);
+
+        //return $pdf->setPaper('a4', 'landscape')->stream();
+        return $pdf->setPaper('a4', 'landscape')->download('retirados_'.time().'.pdf');
+    }
     // PASAR A MODELO
     // PATRON DE DISEÑO ADO o DAO
 

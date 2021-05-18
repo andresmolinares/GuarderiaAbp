@@ -33,5 +33,7 @@
     </tbody>
     @endforeach
 </table>
+
+<a href="reporte_bajas" class="btn btn-primary">Descargar Reporte PDF</a>
 </div>        
 @endsection
