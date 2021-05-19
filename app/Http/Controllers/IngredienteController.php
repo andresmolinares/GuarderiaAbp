@@ -7,6 +7,7 @@ use App\Models\Nino;
 use App\Models\Plato;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class IngredienteController extends Controller
 {
@@ -23,12 +24,21 @@ class IngredienteController extends Controller
         return view('ingrediente.index', compact('ingredientes'));
     }
     
-    public function alergicos(){
+    //Reporte PDF niños alergicos
+    public function reporte_alergicos(){
         $ingredientes = DB::table('ingredientes')
         ->join('ninos', 'ninos.id', 'ingredientes.niño_id')
         ->select('ingredientes.nombre', 'ninos.nombre as ninos_nombre')->get();
-        return view('alergicos', compact('ingredientes'));
+
+        $data=compact('ingredientes');
+        $pdf=PDF::loadView('reports.reporte_alergicos', $data);
+        return $pdf->setPaper('a4', 'landscape')->download('alergicos_'.time().'.pdf');
+
     }
+
+    //Fin Reporte
+
+
     /**
      * Show the form for creating a new resource.
      *

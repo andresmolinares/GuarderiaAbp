@@ -27,5 +27,7 @@
     </tbody>
     
 </table>
+<a href="reporte_platos" class="btn btn-success">Descargar Reporte PDF</a>
+
 </div>        
 @endsection

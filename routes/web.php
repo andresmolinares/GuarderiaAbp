@@ -48,7 +48,14 @@ Auth::routes(['register'=> false, 'reset'=>false]);
 //poner esto dentro del parentesis de route al terminar todos los crud
 // ['register'=> false, 'reset'=>false]
 
+//Rutas para reportes PDF
 Route::get('reporte_bajas', [NinoController::class, 'reporte_bajas'])->middleware('auth');
+Route::get('reporte_mensualidad', [NinoController::class, 'reporte_mensualidad'])->middleware('auth');
+Route::get('reporte_menus_favoritos', [NinoController::class, 'reporte_menus_favoritos'])->middleware('auth');
+Route::get('reporte_alergicos', [IngredienteController::class, 'reporte_alergicos'])->middleware('auth');
+Route::get('reporte_platos', [PlatoController::class, 'reporte_platos'])->middleware('auth');
+
+//Fin rutas para reportes PDF
 Route::get('/home', [NinoController::class, 'index'])->name('home');
 Route::get('bajas', [Nino::class, 'bajas'])->middleware('auth');
 Route::get('alergicos', [Ingrediente::class, 'alergicos'])->middleware('auth');

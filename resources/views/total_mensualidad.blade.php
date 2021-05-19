@@ -33,6 +33,8 @@
     </tbody>
     
 </table>
+<a href="reporte_mensualidad" class="btn btn-success">Descargar Reporte PDF</a>
+
 </div>        
 @endsection
 

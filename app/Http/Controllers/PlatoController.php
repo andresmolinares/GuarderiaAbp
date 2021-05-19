@@ -6,6 +6,7 @@ use App\Models\Plato;
 use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use PDF;
 
 class PlatoController extends Controller
 {
@@ -22,7 +23,22 @@ class PlatoController extends Controller
         return view('plato.index', compact('platos'));
     }
 
+    //Inicio Reporte
 
+    public function reporte_platos(){
+        $platos = DB::table('platos')
+        ->join('menus', 'platos.menu_id', 'menus.id')
+        ->selectRaw('menus.nombre as nombre_menu, COUNT(platos.menu_id) as total_platos')
+        ->groupby('platos.menu_id')->get();
+
+        $data=compact('platos');
+        $pdf=PDF::loadView('reports.reporte_platos', $data);
+
+        return $pdf->setPaper('a4', 'landscape')->download('platosxmenu_'.time().'.pdf');
+
+    }
+
+    //Fin reporte
 
 
     /**

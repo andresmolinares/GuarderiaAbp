@@ -27,5 +27,7 @@
     </tbody>
     
 </table>
+<a href="reporte_menus_favoritos" class="btn btn-success">Descargar Reporte PDF</a>
+
 </div>        
 @endsection

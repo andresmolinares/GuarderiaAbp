@@ -25,6 +25,7 @@ class NinoController extends Controller
         return view('niño.index', compact('ninos'));
     }
 
+    // Inicio para generacion de reportes PDF
     public function reporte_bajas(){
         $ninos=Nino::whereNotNull('fecha_baja')->get();
         $fecha=date('Y-m-d');
@@ -34,6 +35,38 @@ class NinoController extends Controller
         //return $pdf->setPaper('a4', 'landscape')->stream();
         return $pdf->setPaper('a4', 'landscape')->download('retirados_'.time().'.pdf');
     }
+
+    public function reporte_mensualidad(){
+        $ninos=DB::table('ninos')
+        ->join('cuota_mensuales','ninos.id', 'cuota_mensuales.niño_id')
+        ->selectRaw('ninos.nombre AS ninos_nombre, ninos.comidas_realizadas, cuota_mensuales.valor_mensualidad AS cargo_mensual,cuota_mensuales.costo_comida, (cuota_mensuales.costo_comida * ninos.comidas_realizadas) as total_comidas , (cuota_mensuales.costo_comida * ninos.comidas_realizadas) + cuota_mensuales.valor_mensualidad AS total_mensualidad ')
+        ->get();
+        
+        $data=compact('ninos');
+        $pdf=PDF::loadView('reports.reporte_mensualidad', $data);
+        return $pdf->setPaper('a4', 'landscape')->download('mensualidades_'.time().'.pdf');
+        
+        
+    }
+
+    public function reporte_menus_favoritos(){
+        $ninos=DB::table('ninos')
+        ->join('menus', 'ninos.menu_id', 'menus.id')
+        ->selectRaw('COUNT(ninos.id) as cantidad_niños, menus.nombre as nombre_menu')
+        ->groupby('ninos.menu_id')
+        ->get();
+
+        $data=compact('ninos');
+        $pdf=PDF::loadView('reports.reporte_menus_favoritos', $data);
+        return $pdf->setPaper('a4', 'landscape')->download('menusfavoritos_'.time().'.pdf');
+
+    }
+
+
+    //Fin reportes
+
+
+
     // PASAR A MODELO
     // PATRON DE DISEÑO ADO o DAO
 

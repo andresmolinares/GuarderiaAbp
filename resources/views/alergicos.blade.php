@@ -26,6 +26,8 @@
     </tbody>
     
 </table>
+<a href="reporte_alergicos" class="btn btn-success">Descargar Reporte PDF</a>
+
 </div>        
 @endsection
 
