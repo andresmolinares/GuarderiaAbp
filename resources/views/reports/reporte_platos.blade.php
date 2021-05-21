@@ -12,7 +12,7 @@
     </header>
     <main>
         <div class="container">
-            <h5 style="text-align:center"><strong><b>Menus favoritos</b></strong></h5>
+            <h5 style="text-align:center"><strong><b>Cantidad de platos por menú</b></strong></h5>
         <table class="table table-striped text-center">
             <thead>
                 <tr>

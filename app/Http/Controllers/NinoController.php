@@ -8,6 +8,7 @@ use App\Models\Persona;
 use App\Models\Menu;
 use PDF;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class NinoController extends Controller
 {
@@ -142,6 +143,8 @@ class NinoController extends Controller
         $niño=Nino::findOrFail($id);
         $personas = Persona::all();
         $menus = Menu::all();
+
+        $niño->fecha_ingreso=Carbon::createFromFormat('Y-m-d H:i:s', $niño->fecha_ingreso)->format('Y-m-d');
         return view('niño.edit', compact('niño', 'personas', 'menus'));
         
     }

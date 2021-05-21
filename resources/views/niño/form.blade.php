@@ -19,7 +19,7 @@
 
 <div class="form-group">
 <label for="fecha_ingreso">Fecha de ingreso:</label>
-<input type="date" class="form-control" name="fecha_ingreso" value="{{ old('fecha_ingreso', date('Y-m-d')) }}" id="fecha_ingreso">
+<input type="date" class="form-control" name="fecha_ingreso" value="{{ isset($niño-> fecha_ingreso)?$niño->fecha_ingreso:old('fecha_ingreso', date('Y-m-d')) }}" id="fecha_ingreso">
 
 </div>
 
@@ -31,12 +31,12 @@
 
 <div class="form-group">
 <label for="fecha_baja">Fecha de baja:</label>
-<input type="date" class="form-control" name="fecha_baja" value="{{ old('fecha_baja', date('Y-m-d')) }}" id="fecha_baja">
+<input type="date" class="form-control" name="fecha_baja" value="{{ isset($niño-> fecha_baja)?$niño->fecha_baja:old('fecha_baja', date('Y-m-d'))  }}" id="fecha_baja">
 
 </div>
 
 <div class="form-group">
-    <label for="fecha_baja">Acudiente:</label>
+    <label for="acudientes">Acudiente:</label>
 <select class="form-control" name="persona_id" id="persona_id">
     @foreach ($personas as $persona)
     <option value="{{$persona -> id}}">{{$persona->nombre}}</option>

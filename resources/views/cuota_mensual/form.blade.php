@@ -28,7 +28,7 @@
     <label for="niño">Niño:</label>
     <select class="form-control" name="niño_id" id="niño_id">
     @foreach ($ninos as $nino)
-        <option value="{{ $nino->id }}">{{$nino->nombre}}</option>
+        <option value="{{ $nino->id }}">{{$nino->id}}-{{$nino->nombre}}</option>
     @endforeach
     </select>
     </div>
