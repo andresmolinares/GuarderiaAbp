@@ -44,7 +44,7 @@ Route::resource('ingrediente', IngredienteController::class)->middleware('auth')
 Route::resource('pagador', PagadorController::class)->middleware('auth');
 Route::resource('cuota_mensual', CuotaMensualController::class)->middleware('auth');
 
-Auth::routes(['register'=> false, 'reset'=>false]);
+Auth::routes(['reset'=>false]);
 //poner esto dentro del parentesis de route al terminar todos los crud
 // ['register'=> false, 'reset'=>false]
 
